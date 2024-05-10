@@ -43,8 +43,9 @@ sap.ui.define([
         handleUploadPress: function (oEvent) {
             //perform upload
             //var vService = "/sap/opu/odata/sap/ZEVENT_SRV/ZC_Event";
-            var oModel = this.getView().getModel();
-            //var oModel = new sap.ui.model.odata.ODataModel(vService,true); 
+            var vService = "/sap/opu/odata/sap/ZAM_UPLOADEXCEL_SRV/";
+            //var oModel = this.getView().getModel();
+            var oModel = new sap.ui.model.odata.ODataModel(vService,true); 
             var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
             var oFileUploader = sap.ui.getCore().byId("fupImport");
             var sMsg = "";
@@ -68,7 +69,9 @@ sap.ui.define([
      
         _addTokenToUploader: function () {
             //Add header parameters to file uploader.
-            var oDataModel = this.getView().getModel();
+            var vService = "/sap/opu/odata/sap/ZAM_UPLOADEXCEL_SRV/";
+            //var oDataModel = this.getView().getModel();
+            var oDataModel = new sap.ui.model.odata.ODataModel(vService,true); 
             var sTokenForUpload = oDataModel.getSecurityToken();
             var oFileUploader = sap.ui.getCore().byId("fupImport");
             var oHeaderParameter = new sap.ui.unified.FileUploaderParameter({
@@ -88,7 +91,8 @@ sap.ui.define([
      
             oFileUploader.addHeaderParameter(oHeaderSlug);
             //set upload url
-            var sUrl = oDataModel.sServiceUrl + "/FileUploadSet";
+            //var sUrl = oDataModel.sServiceUrl + "/FileUploadSet";
+            var sUrl = oDataModel.sServiceUrl + "/FileDataSet";
             oFileUploader.setUploadUrl(sUrl);
         },
      
